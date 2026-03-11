@@ -46,7 +46,7 @@ pipeline {
                 sh '''
                     npm install -g server
                     serve -s build
-                    npx playwrite test
+                    npx playwright test
                 '''
             }
         }
