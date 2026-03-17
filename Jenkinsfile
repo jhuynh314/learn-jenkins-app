@@ -7,6 +7,7 @@ pipeline {
     }
 
     stages {
+        // small change
         // stage('Build') {
         //     agent {
         //         docker {
