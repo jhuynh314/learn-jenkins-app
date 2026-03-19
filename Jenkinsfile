@@ -17,9 +17,9 @@ pipeline {
             }
 
             steps {
-                sh ```
+                sh '''
                     aws --version
-                ```
+                '''
             }
 
         }
