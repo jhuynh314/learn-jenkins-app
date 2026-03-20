@@ -14,24 +14,25 @@ pipeline {
 
     stages {
         
-        // stage('Build') {
-        //     agent {
-        //         docker {
-        //             image 'node:18-alpine'
-        //             reuseNode true
-        //         }
-        //     }
-        //     steps {
-        //         sh '''
-        //             ls -la
-        //             node --version
-        //             npm --version
-        //             npm ci
-        //             npm run build
-        //             ls -la
-        //         '''
-        //     }
-        // }
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
+                '''
+            }
+        }
+
         /*
         stage('Run Tests'){
             parallel {
@@ -160,6 +161,12 @@ pipeline {
             }
         }
         */
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t myjenkinsapp .'
+            }
+        }
 
         stage('Deploy to AWS'){
             agent {
